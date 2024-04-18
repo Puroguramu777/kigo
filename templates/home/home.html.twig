@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %} 
+
+{% block body %}
+
+<a href="/project/new">Créer un projet</a>
+
+{% for project in projets %}
+        
+        <div class="card border-primary text-white bg-info mb-4 me-5 mt-4" style="width: 15%;"> 
+            
+            <h3>{{ project.title }}</h1> <br>
+                <br>
+               
+                    <div>{{ project.description }}</div>
+                        
+                
+            </div>
+            {% endfor %}
+
+{% endblock %} 
