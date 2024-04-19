@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('section', EntityType::class, [
                 'class' => Section::class,
-                'choice_label' => 'id',
+                'choice_label' => 'label',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
