@@ -1,17 +1,17 @@
+
 {% extends "base.html.twig" %} 
-
 {% block body %}
+{% include "header/header.html.twig" %} 
 
-<a href="/project/new">Créer un projet</a>
 
-{% for project in projets %}
+{% for projet in projets %}
         
-        <div class="card border-primary text-white bg-info mb-4 me-5 mt-4" style="width: 30%;"> 
+        <div class="card border-primary text-white bg-info mb-4 me-5 mt-4" style="width: 20%;"> 
             
-            <h3>{{ project.title }}</h1> <br>
+            <h3>{{ projet.title }}</h1> <br>
                 <br>
                
-                    <div>{{ project.description }}</div>
+                    <div>{{ projet.description }}</div>
                         
                 
             </div>

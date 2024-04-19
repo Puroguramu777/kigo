@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Project;
+use App\Entity\Projet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Project>
+ * @extends ServiceEntityRepository<Projet>
  *
- * @method Project|null find($id, $lockMode = null, $lockVersion = null)
- * @method Project|null findOneBy(array $criteria, array $orderBy = null)
- * @method Project[]    findAll()
- * @method Project[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Projet|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Projet|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Projet[]    findAll()
+ * @method Projet[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProjectRepository extends ServiceEntityRepository
+class ProjetRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Project::class);
+        parent::__construct($registry, Projet::class);
     }
 
-    public function findAllAnnonce()
+    public function findAllProjet()
     {
         $db = $this->findAllOptimize();
         return $db->getQuery()->getResult();
@@ -36,16 +36,26 @@ class ProjectRepository extends ServiceEntityRepository
             'SELECT
             p.id,
             p.title,
-            p.description
-            FROM App\Entity\Project p 
+            p.description  
+            FROM App\Entity\Projet p
+            
+
             
            ');
             
             return $query->getResult();
-        }
         
+        
+        
+        
+        // return $this->createQueryBuilder('a')
+        //     ->leftJoin('a.typeLogement', 'typeLogement')
+        //     ->addSelect('typeLogement');
+            
+    }
+
 //    /**
-//     * @return Project[] Returns an array of Project objects
+//     * @return Projet[] Returns an array of Projet objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -59,7 +69,7 @@ class ProjectRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Project
+//    public function findOneBySomeField($value): ?Projet
 //    {
 //        return $this->createQueryBuilder('p')
 //            ->andWhere('p.exampleField = :val')

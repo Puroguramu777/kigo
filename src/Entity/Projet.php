@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectRepository;
+use App\Repository\ProjetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProjectRepository::class)]
-class Project
+#[ORM\Entity(repositoryClass: ProjetRepository::class)]
+class Projet
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +19,7 @@ class Project
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Project')]
+    #[ORM\ManyToOne(inversedBy: 'projets')]
     private ?User $user = null;
 
     public function getId(): ?int

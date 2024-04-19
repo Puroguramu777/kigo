@@ -6,13 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -35,15 +33,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $lastName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstName = null;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?Section $section = null;
+
     /**
-     * @var Collection<int, Project>
+     * @var Collection<int, Projet>
      */
-    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'user')]
-    private Collection $Project;
+    #[ORM\OneToMany(targetEntity: Projet::class, mappedBy: 'user')]
+    private Collection $projets;
 
     public function __construct()
     {
-        $this->Project = new ArrayCollection();
+        $this->projets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,30 +128,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getProject(): Collection
+    public function getLastName(): ?string
     {
-        return $this->Project;
+        return $this->lastName;
     }
 
-    public function addProject(Project $project): static
+    public function setLastName(string $lastName): static
     {
-        if (!$this->Project->contains($project)) {
-            $this->Project->add($project);
-            $project->setUser($this);
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): static
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getSection(): ?Section
+    {
+        return $this->section;
+    }
+
+    public function setSection(?Section $section): static
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Projet>
+     */
+    public function getProjets(): Collection
+    {
+        return $this->projets;
+    }
+
+    public function addProjet(Projet $projet): static
+    {
+        if (!$this->projets->contains($projet)) {
+            $this->projets->add($projet);
+            $projet->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeProject(Project $project): static
+    public function removeProjet(Projet $projet): static
     {
-        if ($this->Project->removeElement($project)) {
+        if ($this->projets->removeElement($projet)) {
             // set the owning side to null (unless already changed)
-            if ($project->getUser() === $this) {
-                $project->setUser(null);
+            if ($projet->getUser() === $this) {
+                $projet->setUser(null);
             }
         }
 
