@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %} 
+
+{% block body %}
+{% include "header/header.html.twig" %} 
+
+<table>
+    <tbody>
+        <tr>
+            <th>Email :</th>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <th>Nom :</th>
+            <td>{{user.lastName}}</td>
+        </tr>
+        <tr>
+            <th>Prénom :</th>
+            <td>{{user.firstName}}</td>
+        </tr
+        {% for section in section %}
+        <tr>
+            <th>Section :</th>
+            <td>{{section.label}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

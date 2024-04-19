@@ -21,6 +21,23 @@ class SectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Section::class);
     }
 
+    public function findUserSection(int $id)
+{
+    $entityManager = $this->getEntityManager();
+    
+    $query = $entityManager->createQuery(
+        'SELECT
+        s.id,
+        s.label
+        FROM App\Entity\Section s 
+        WHERE s.id = :id'
+        
+    )->setParameter('id', $id);
+
+        
+    return $query->getResult();
+}
+    
     //    /**
     //     * @return Section[] Returns an array of Section objects
     //     */
