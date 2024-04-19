@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Repository\ProjetRepository;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,7 @@ class HomeController extends AbstractController
 
         return $this->render("home/home.html.twig",[
             "projets" => $this->projetRepo->findAllOptimize(),
-            
+           
         ]);
     }
 
