@@ -36,7 +36,7 @@ class Projet
     private ? File $imageFile=null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updateAt = null;
+    private ?\DateTime $updateAt = null;
     
 
     public function getId(): ?int

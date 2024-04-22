@@ -78,4 +78,15 @@ class ProjetController extends AbstractController
 
         return $this->redirectToRoute('app_projet_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route("/detail/{id}", name:"detail", methods:['GET'])]
+    public function home(ProjetRepository $projetRepository, int $id ): Response{
+        $projet = $projetRepository->find($id);
+        
+
+        return $this->render("projet/detail.html.twig",[
+            'projet' => $projet,
+
+        ]);
+    }
 }
