@@ -28,6 +28,8 @@ class ProjetController extends AbstractController
         $projet = new Projet();
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $projet->setUser($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($projet);
