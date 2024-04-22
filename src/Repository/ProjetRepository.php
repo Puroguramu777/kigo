@@ -36,7 +36,8 @@ class ProjetRepository extends ServiceEntityRepository
             'SELECT
             p.id,
             p.title,
-            p.description  
+            p.description,
+            p.fileName
             FROM App\Entity\Projet p
             
 

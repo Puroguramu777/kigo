@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
+
 use App\Entity\Projet;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProjetType extends AbstractType
 {
@@ -16,6 +16,13 @@ class ProjetType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('imageFile', FileType::class, [
+                "required" => false,
+                "label" => "Image du projet",
+                'attr'=>['class'=>'form-control']
+            ])
+            
+
         ;
     }
 
