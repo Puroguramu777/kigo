@@ -16,27 +16,27 @@ class ProfilController extends AbstractController
     public function __construct(SectionRepository $sectionRepository)
     {
         $this->sectionRepo = $sectionRepository;
-        
-        
+
+
     }
-    
-    
-    
-    #[Route("/{id}", name:"profil", methods:['GET'])]
+
+
+
+    #[Route("/profil/{id}", name:"profil", methods:['GET'])]
     public function home(User $user, int $id): Response{
-    
+
 
         return $this->render("user/profil.html.twig",[
             'user'=> $user,
             'section'=>$this->sectionRepo->findUserSection($id)
-            
-            
+
+
         ]);
     }
 
-     
 
-    
+
+
 
 
 }
