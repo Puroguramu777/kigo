@@ -1,7 +1,22 @@
 {% extends "base.html.twig" %} 
 {% block body %}
 {% include "header/header.html.twig" %}
-
-<h1>test</h1>
+<table>
+    <tbody>
+    <tr>
+        <td>
+        <img src="/images/{{projet.fileName}}" alt="image de la maison" class="card-img-top" />
+        </td>
+    </tr>
+        <tr>
+            <td>{{projet.title}}</td>
+        </tr>
+        <tr>
+            <th>Description :</th>
+            <td>{{projet.Description}}</td>
+        </tr>
+    
+    </tbody>
+</table>
 
 {% endblock %}
