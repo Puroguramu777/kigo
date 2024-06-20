@@ -1,11 +1,19 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}New Projet{% endblock %}
+{% block title %}Nouveau Projet{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+{% endblock %}
 
 {% block body %}
-{% include "header/header.html.twig" %} 
-    <h1>Créer un nouveau projet</h1>
+{% include "header/header.html.twig" %}
+<div class="container">
+    <h1 class="mb-4">Créer un nouveau Projet</h1>
 
     {{ include('projet/_form.html.twig') }}
 
+</div>
 {% endblock %}

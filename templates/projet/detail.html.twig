@@ -1,22 +1,75 @@
-{% extends "base.html.twig" %} 
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .detail-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-width: 500px; /* Ajustez cette valeur selon vos besoins */
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .detail-container h1 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .detail-container .card-body {
+            padding: 20px;
+        }
+
+        .detail-container .card-text {
+            margin-top: 20px;
+        }
+
+        .detail-container th {
+            width: 150px;
+        }
+
+        @media (max-width: 768px) {
+            .detail-container {
+                padding: 15px;
+            }
+
+            .detail-container th {
+                width: auto;
+            }
+
+            .detail-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 {% include "header/header.html.twig" %}
-<table>
-    <tbody>
-    <tr>
-        <td>
-        <img src="/images/{{projet.fileName}}" alt="image de la maison" class="card-img-top" />
-        </td>
-    </tr>
-        <tr>
-            <td>{{projet.title}}</td>
-        </tr>
-        <tr>
-            <th>Description :</th>
-            <td>{{projet.Description}}</td>
-        </tr>
-    
-    </tbody>
-</table>
+
+<div class="detail-container card">
+    <img src="/images/{{ projet.fileName }}" alt="image de la maison" class="card-img-top detail-image" />
+    <div class="card-body">
+        <h1>{{ projet.title }}</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Description :</th>
+                    <td>{{ projet.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}

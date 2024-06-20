@@ -16,12 +16,7 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('lastName')
-            ->add('firstName')
-            ->add('section', EntityType::class, [
-                'class' => Section::class,
-                'choice_label' => 'label',
-            ])
-        ;
+            ->add('firstName');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

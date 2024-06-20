@@ -1,27 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .register-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .register-container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .register-container .form-control {
+            margin-bottom: 10px;
+        }
+
+        .register-container .btn {
+            width: 100%;
+        }
+
+        .register-container .alert {
+            margin-bottom: 20px;
+        }
+
+        .register-container .mb-3 {
+            text-align: center;
+        }
+
+        .register-container img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 15px;
+            }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-<img src="{{asset('logo/logo.jpg')}}" class="d-flex justify-content-center" alt="logo kigo">
+<div class="register-container">
+    <img src="{{ asset('logo/logo.jpg') }}" alt="logo kigo" class="img-fluid">
+
     <h1>Inscription</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
+            'label': 'Mot de passe',
+            'attr': {'class': 'form-control'}
         }) }}
-        {{ form_row(registrationForm.lastName,{
-            label: 'Nom'
+        {{ form_row(registrationForm.lastName, {
+            'label': 'Nom',
+            'attr': {'class': 'form-control'}
         }) }}
-        {{ form_row(registrationForm.firstName,{
-            label: 'Prénom'
+        {{ form_row(registrationForm.firstName, {
+            'label': 'Prénom',
+            'attr': {'class': 'form-control'}
         }) }}
-        {{ form_row(registrationForm.section) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.section, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
 
         <button type="submit" class="btn btn-lg btn-primary mt-2">Register</button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

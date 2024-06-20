@@ -2,12 +2,64 @@
 
 {% block title %}Edit User{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-container form {
+            margin-bottom: 20px;
+        }
+
+        .profile-container .form-group {
+            margin-bottom: 15px;
+        }
+
+        .profile-container .form-control {
+            border-radius: 4px;
+        }
+
+        .profile-container .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .profile-container .btn-danger {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 15px;
+            }
+
+            .profile-container .btn {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Mettre a jour mon profile</h1>
+{% include "header/header.html.twig" %}
+<div class="profile-container">
+    <h1>Mettre à jour mon profil</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    {{ include('user/_form.html.twig', {'button_label': 'Enregistrer', 'attr': {'class': 'form'}}) }}
 
-    
-
-    {{ include('user/_delete_form.html.twig') }}
+    {{ include('user/_delete_form.html.twig', {'attr': {'class': 'form'}}) }}
+</div>
 {% endblock %}

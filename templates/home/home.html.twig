@@ -1,22 +1,74 @@
+{% extends "base.html.twig" %}
 
-{% extends "base.html.twig" %} 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .project-card {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            /* transition: transform 0.2s; Retiré pour désactiver le grossissement */
+        }
+
+        /* .project-card:hover {
+            transform: scale(1.05);
+        } Retiré pour désactiver le grossissement */
+
+        .project-card img {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+            text-align: center;
+        }
+
+        .project-card .card-body {
+            padding: 15px;
+        }
+
+        .project-card .card-body p {
+            margin: 0.5em 0;
+        }
+
+        .project-card .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                margin: 10px auto;
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-{% include "header/header.html.twig" %} 
+    {% include "header/header.html.twig" %}
 
-
-{% for projet in projets %}
-        
-        <div class="card border-primary text-white bg-info mb-4 me-5 mt-4" style="width: 20%;"> 
-            
-            <h3>{{ projet.title }}</h1> <br>
-                <br>
-               
-                <img src="/images/{{projet.fileName}}" alt="image de la maison" class="card-img-top" />
-                    <div>{{ projet.description }}</div>
-                    <a href="{{path('detail', {'id': projet.id})}}">Détail</a>
-                        
-                
+    <div class="projects-container">
+        {% for projet in projets %}
+            <div class="card project-card border-primary text-dark bg-light mb-4">
+                <img src="/images/{{ projet.fileName }}" alt="image de la maison" class="card-img-top" />
+                <div class="card-body">
+                    <h3>{{ projet.title }}</h3>
+                    <p>{{ projet.description }}</p>
+                    <a href="{{ path('detail', {'id': projet.id}) }}" class="btn btn-primary">Détail</a>
+                </div>
             </div>
-            {% endfor %}
-
-{% endblock %} 
+        {% endfor %}
+    </div>
+{% endblock %}
